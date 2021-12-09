@@ -1,48 +1,51 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { useState } from "react";
+import { useEffect } from "react";
+import styled from 'styled-components'
 import "./App.css";
+import Photo from "./Photo";
+
+
 const axios = require('axios');
 
+const WrapperDiv = styled.div`
+  font-family: sans-serif;
+  text-align: center;
+`;
 
-//const altPhoto = "https://picsum.photos/id/237/200/300"
+const BlueH1 = styled.h1 `
+    color: royalblue;
+`
 
-
-
-function Info (props) {
-  return <div> Here is the Info component <br/>
-  <h2>{props.APOD}s</h2>
+function Title (props) {
+  return <div>  
+          <div>{props.title}</div>
   </div>
   }
 
-function Photo (props) {
-  return <div> Here is the Photo component <br/>
-  <h2>{props.info}</h2>
-  </div>
-  }
-   
 function Fetcher (props){
-  const [APOD, setApod] = useState(" ")
-  const [info, setInfo] = useState(" ");
-  axios.get('https://rickandmortyapi.com/api')
-    .then((resp)=> {
-    setApod(resp.data.episodes);
-    setInfo(resp.data.characters);
+  const [APOD, setApod] = useState(" ");
+  const [title, setTitle] = useState(" ");
+  useEffect(()=> {  axios.get('https://api.nasa.gov/planetary/apod?api_key=Ec0fQGaOpvWcJefHxrVvCHBtJzTju76T0wLZbux8')
+  .then((resp)=> {
+    setApod(resp.data.url);
+    setTitle(resp.data.title);
   })
+  .catch(err => console.log(err));
+},[]);
   return( <div>
-        <Photo APOD={APOD}/> 
-        <Info info={info}/> 
+        <Title title={title}/>
+        <Photo APOD={APOD}/>  
       </div>)
 }
 
-
-
 function App() {
   return (
-    <div className="App">
-      <h1> Nasa's Photo of The Day</h1>
+    <WrapperDiv>
+      <BlueH1> Nasa's Photo of The Day</BlueH1>
       <Fetcher/>
-    </div>
+    </WrapperDiv>
   );
 }
 
