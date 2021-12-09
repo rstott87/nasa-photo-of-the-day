@@ -5,17 +5,21 @@ import "./App.css";
 import Fetcher from "./Fetcher"
 const axios = require('axios');
 
+
+
+
+
 const BlueH1 = styled.h1 `
     color: royalblue;
-    height: 100px;
     font-size: 40px;
-    padding: 50px
+    padding: 10px
 `
 const StyledDiv = styled.div`
+background-color:#E9E1DF;
+border-radius: 30px;
 text-align: center;
 border: 10px solid black;
-margin-left:180px;
-margin-right:180px;
+margin:100px;
 `
 function App() {
   return (
