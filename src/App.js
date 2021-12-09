@@ -1,20 +1,51 @@
 import React from "react";
+import ReactDOM from "react-dom";
+import { useState } from "react";
 import "./App.css";
 const axios = require('axios');
 
-const fetchNasaInfo = () => {
-  axios.get('https://api.nasa.gov/planetary/apod?api_key=Ec0fQGaOpvWcJefHxrVvCHBtJzTju76T0wLZbux8')
-  .then((resp)=> {
-    console.log(resp);
-})
-};
-fetchNasaInfo();
+
+//const altPhoto = "https://picsum.photos/id/237/200/300"
+
+
+
+function Info (props) {
+  return <div> Here is the Info component <br/>
+  </div>
+  }
+
+function Photo (props) {
+  return <div> Here is the Photo component <br/>
+  <img src= {props.url} alt = "google"></img>
+  </div>
+  }
+   
+function Fetcher (props){
+  const [APOD, setApod] = useState(" ")
+  const [info, setInfo] = useState(" ");
+  axios.get('https://rickandmortyapi.com/api')
+    .then((resp)=> {
+    setApod(resp.data.episodes);
+    setInfo(resp.data.characters);
+  })
+  return( <div>
+        <Photo APOD={APOD}/> 
+        <Info info={info}/> 
+      </div>)
+}
+
+
+
 function App() {
   return (
     <div className="App">
       <h1> Nasa's Photo of The Day</h1>
+      <Fetcher/>
     </div>
   );
 }
 
+//ReactDOM.render(<FetchInfo photo={n} />, document.getElementById("root"));
+
 export default App;
+
