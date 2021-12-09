@@ -11,12 +11,13 @@ const axios = require('axios');
 
 function Info (props) {
   return <div> Here is the Info component <br/>
+  <h2>{props.APOD}s</h2>
   </div>
   }
 
 function Photo (props) {
   return <div> Here is the Photo component <br/>
-  <img src= {props.url} alt = "google"></img>
+  <h2>{props.info}</h2>
   </div>
   }
    
