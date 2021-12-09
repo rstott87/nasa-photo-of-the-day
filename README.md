@@ -110,4 +110,4 @@ Follow these steps for completing your project.
 
 ----
 
-## Part II - [Advanced Styling Techniques](DAY_TWO_README.md)
+## Part II - [Advanced Styling Techniques](.md)
